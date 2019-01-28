@@ -2,11 +2,9 @@ package com.epam.atm.demo.pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserAccountPage extends AbstractPage {
 
@@ -42,9 +40,6 @@ public class UserAccountPage extends AbstractPage {
 
     @FindBy(xpath = "//*[@title='Sent']")
     private WebElement linkSentEmails;
-
-    @FindBy(xpath = "//*[@class='Hq aUG']")
-    private WebElement imageFullSize;
 
     private By buttonComposeMenuLocator = By.xpath("//div[@class='z0']");
 
@@ -103,22 +98,12 @@ public class UserAccountPage extends AbstractPage {
     }
 
     public UserAccountPage sendEmail() {
-        buttonSendEmail.click();
-        return this;
-    }
-
-    public UserAccountPage clickOnFullSize() {
-        imageFullSize.click();
+        waitForElementAndClick(driver, By.xpath("//td[@class='gU Up']"));
         return this;
     }
 
     public UserAccountPage clickOnDraftEmail() {
-        new WebDriverWait(driver, 10)
-                .ignoring(StaleElementReferenceException.class)
-                .until((WebDriver d) -> {
-                    d.findElement(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))).click();
-                    return true;
-                });
+        driver.findElements(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))).stream().filter(draftItem -> draftItem.isDisplayed()).findFirst().get().click();
         return this;
     }
 
@@ -132,18 +117,12 @@ public class UserAccountPage extends AbstractPage {
     }
 
     public UserAccountPage navigateToDrafts() {
-        openEmailsMenu()
-                .clickOnDraftsLink()
-                .clickOnDraftEmail();
+        openEmailsMenu().clickOnDraftsLink();
         return this;
     }
 
     public UserAccountPage sendDraftEmail() {
-        clickOnDraftEmail().clickOnFullSize().sendEmail();
-        //Thread sleep here is to wait for email to be sent
-        threadSleep();
-        //refresh the page to update the dom structure
-        driver.navigate().refresh();
+        clickOnDraftEmail().sendEmail();
         return this;
     }
 

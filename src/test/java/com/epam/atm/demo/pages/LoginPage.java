@@ -1,7 +1,9 @@
 package com.epam.atm.demo.pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
@@ -17,7 +19,12 @@ public class LoginPage extends AbstractPage {
     @FindBy(name = "password")
     private WebElement inputPassword;
 
-    private By buttonIdentifierNextLocator = By.xpath("//*[@id='identifierNext']");
+    @FindBy(xpath = "//*[@id='identifierNext']")
+    private WebElement idNext;
+
+    @FindBy(xpath = "//*[@id='passwordNext']")
+    private WebElement passNext;
+
     private By buttonPasswordNextLocator = By.xpath("//*[@id='passwordNext']");
 
     public LoginPage(WebDriver driver) {
@@ -30,14 +37,12 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage clickOnPasswordNext() {
-        threadSleep();
         waitForElementAndClick(driver, buttonPasswordNextLocator);
         return this;
     }
 
     public LoginPage clickOnIdentifierNext() {
-        threadSleep();
-        waitForElementAndClick(driver, buttonIdentifierNextLocator);
+        idNext.click();
         return this;
     }
 

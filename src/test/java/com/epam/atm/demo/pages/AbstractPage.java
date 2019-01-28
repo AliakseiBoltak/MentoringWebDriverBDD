@@ -45,17 +45,9 @@ public abstract class AbstractPage {
     }
 
     public void waitForElementAndClick(WebDriver driver, By by) {
-        new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class, WebDriverException.class)
+        new WebDriverWait(driver, 15).ignoring(StaleElementReferenceException.class, WebDriverException.class)
                 .until(ExpectedConditions.elementToBeClickable(by));
         driver.findElement(by).click();
     }
 
-    //better to use wait with expected conditions. Here it is just for demo
-    public void threadSleep() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-
-        }
-    }
 }
