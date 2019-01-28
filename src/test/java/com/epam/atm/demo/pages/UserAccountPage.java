@@ -1,10 +1,12 @@
 package com.epam.atm.demo.pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserAccountPage extends AbstractPage {
 
@@ -111,15 +113,12 @@ public class UserAccountPage extends AbstractPage {
     }
 
     public UserAccountPage clickOnDraftEmail() {
-        List<WebElement> draftSubjectElements = driver.findElements(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT)));
-        for (int i = 0; i < draftSubjectElements.size(); i++) {
-            try {
-                draftSubjectElements.get(i).click();
-            } catch (WebDriverException e) {
-                log.info(e.getCause());
-            }
-            draftSubjectElements = driver.findElements(By.xpath(String.format("//*[contains(text(), '%s')]", SUBJECT)));
-        }
+        new WebDriverWait(driver, 10)
+                .ignoring(StaleElementReferenceException.class)
+                .until((WebDriver d) -> {
+                    d.findElement(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))).click();
+                    return true;
+                });
         return this;
     }
 
@@ -153,8 +152,8 @@ public class UserAccountPage extends AbstractPage {
                 isElementExists(driver, By.xpath(String.format("//span[contains(text(), '%s')]", BODY)));
     }
 
-    public UserAccountPage logout(){
+    public UserAccountPage logout() {
         clickOnLabelGoogleAccount().clickOnButtonSignOut();
-        return  this;
+        return this;
     }
 }
