@@ -1,14 +1,11 @@
 package com.epam.atm.demo.pages;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
-
-    private Logger log = Logger.getLogger(LoginPage.class);
 
     @FindBy(linkText = "SIGN IN")
     private WebElement buttonSignIn;

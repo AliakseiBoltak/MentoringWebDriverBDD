@@ -1,14 +1,11 @@
 package com.epam.atm.demo.pages;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class UserAccountPage extends AbstractPage {
-
-    private Logger log = Logger.getLogger(UserAccountPage.class);
 
     @FindBy(xpath = "//*[@aria-label='Google Account: Irene Ash  \n" +
             "(irene.test02@gmail.com)']")
@@ -103,7 +100,7 @@ public class UserAccountPage extends AbstractPage {
     }
 
     public UserAccountPage clickOnDraftEmail() {
-        driver.findElements(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))).stream().filter(draftItem -> draftItem.isDisplayed()).findFirst().get().click();
+        clickOnElementByJS(driver.findElement(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))));
         return this;
     }
 

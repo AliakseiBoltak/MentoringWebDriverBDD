@@ -2,6 +2,7 @@ package com.epam.atm.demo.pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +22,7 @@ public abstract class AbstractPage {
     protected WebDriver driver;
     public static final String SUBJECT = getRandomString(15);
     public static final String BODY = getRandomString(25);
-    public static final String RECEIVER = "irymvi@gmail.com";
+    public static final String RECEIVER = "aaboltak@gmail.com";
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -48,6 +49,11 @@ public abstract class AbstractPage {
         new WebDriverWait(driver, 15).ignoring(StaleElementReferenceException.class, WebDriverException.class)
                 .until(ExpectedConditions.elementToBeClickable(by));
         driver.findElement(by).click();
+    }
+
+    public void clickOnElementByJS(WebElement element) {
+        JavascriptExecutor ex = (JavascriptExecutor) driver;
+        ex.executeScript("arguments[0].click();", element);
     }
 
 }
