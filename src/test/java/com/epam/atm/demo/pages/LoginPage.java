@@ -22,10 +22,18 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='passwordNext']")
     private WebElement passNext;
 
+    @FindBy(xpath = "//*[@class='gmail-nav__nav-link gmail-nav__nav-link__create-account']")
+    private WebElement buttonCreateAccount;
+
+
     private By buttonPasswordNextLocator = By.xpath("//*[@id='passwordNext']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void clickOnButtonCreateAccount() {
+        buttonCreateAccount.click();
     }
 
     public LoginPage clickOnButtonSignIn() {

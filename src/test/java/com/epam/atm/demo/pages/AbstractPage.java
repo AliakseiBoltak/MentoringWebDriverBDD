@@ -13,6 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+
 import static com.epam.atm.demo.Utils.RandomString.getRandomString;
 
 public abstract class AbstractPage {
@@ -47,8 +49,18 @@ public abstract class AbstractPage {
 
     public void waitForElementAndClick(WebDriver driver, By by) {
         new WebDriverWait(driver, 15).ignoring(StaleElementReferenceException.class, WebDriverException.class)
-                .until(ExpectedConditions.elementToBeClickable(by));
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
         driver.findElement(by).click();
+    }
+
+    public void switchToRequiredTabInBrowser(String tabTitle) {
+        ArrayList<String> tabs = new ArrayList(driver.getWindowHandles());
+        for (String currentTab : tabs) {
+            driver.switchTo().window(currentTab.toString());
+            if (driver.getTitle().equals(tabTitle)) {
+                break;
+            }
+        }
     }
 
     public void clickOnElementByJS(WebElement element) {
