@@ -3,12 +3,13 @@ package com.epam.atm.demo.tests;
 import com.epam.atm.demo.pages.LoginPage;
 import com.epam.atm.demo.pages.UserAccountPage;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestSendEmailFromDraftsFolder extends BaseTest {
+public class CreateEmailAndSendFromDrafts extends BaseTest {
 
-    private Logger log = Logger.getLogger(TestSendEmailFromDraftsFolder.class);
+    private Logger log = Logger.getLogger(CreateEmailAndSendFromDrafts.class);
 
     @Test()
     public void createDraftEmailAndSendItFromDraftsFolder() {

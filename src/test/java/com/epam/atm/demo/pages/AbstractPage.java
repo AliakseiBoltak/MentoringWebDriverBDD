@@ -31,7 +31,7 @@ public abstract class AbstractPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public boolean isElementExists(WebDriver driver, By by) {
+    public boolean isElementExists(By by) {
         try {
             driver.findElement(by);
             return true;
@@ -56,11 +56,16 @@ public abstract class AbstractPage {
     public void switchToRequiredTabInBrowser(String tabTitle) {
         ArrayList<String> tabs = new ArrayList(driver.getWindowHandles());
         for (String currentTab : tabs) {
-            driver.switchTo().window(currentTab.toString());
+            driver.switchTo().window(currentTab);
             if (driver.getTitle().equals(tabTitle)) {
                 break;
             }
         }
+    }
+
+    public void scrollIntoView(WebElement element){
+        JavascriptExecutor js =((JavascriptExecutor)driver);
+        js.executeScript("arguments[0].scrollIntoView(true)", element);
     }
 
     public void clickOnElementByJS(WebElement element) {

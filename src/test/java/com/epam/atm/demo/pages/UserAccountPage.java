@@ -124,8 +124,8 @@ public class UserAccountPage extends AbstractPage {
     }
 
     public boolean isEmailExists() {
-        return isElementExists(driver, By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))) &&
-                isElementExists(driver, By.xpath(String.format("//span[contains(text(), '%s')]", BODY)));
+        return isElementExists(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))) &&
+                isElementExists(By.xpath(String.format("//span[contains(text(), '%s')]", BODY)));
     }
 
     public UserAccountPage logout() {

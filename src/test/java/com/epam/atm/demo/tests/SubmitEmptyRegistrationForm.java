@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class RegisterNewUser extends BaseTest {
+public class SubmitEmptyRegistrationForm extends BaseTest {
 
-    private Logger log = Logger.getLogger(RegisterNewUser.class);
+    private Logger log = Logger.getLogger(SubmitEmptyRegistrationForm.class);
     public static final String REGISTRATION_PAGE_TITLE = "Create your Google Account";
 
     @Test

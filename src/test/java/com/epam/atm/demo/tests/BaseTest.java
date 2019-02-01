@@ -1,8 +1,5 @@
 package com.epam.atm.demo.tests;
 
-import com.epam.atm.demo.pages.LoginPage;
-import com.epam.atm.demo.pages.RegistrationPage;
-import com.epam.atm.demo.pages.UserAccountPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
