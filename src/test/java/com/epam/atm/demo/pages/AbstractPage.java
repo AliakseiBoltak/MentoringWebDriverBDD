@@ -1,9 +1,7 @@
 package com.epam.atm.demo.pages;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -19,8 +17,6 @@ import static com.epam.atm.demo.Utils.RandomString.getRandomString;
 
 public abstract class AbstractPage {
 
-    private Logger log = Logger.getLogger(AbstractPage.class);
-
     protected WebDriver driver;
     public static final String SUBJECT = getRandomString(15);
     public static final String BODY = getRandomString(25);
@@ -32,13 +28,7 @@ public abstract class AbstractPage {
     }
 
     public boolean isElementExists(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            log.info("Element with locator " + by + " does not exist");
-            return false;
-        }
+        return !driver.findElements(by).isEmpty();
     }
 
     public void moveToElement(WebDriver driver, By by) {
@@ -49,8 +39,13 @@ public abstract class AbstractPage {
 
     public void waitForElementAndClick(WebDriver driver, By by) {
         new WebDriverWait(driver, 15).ignoring(StaleElementReferenceException.class, WebDriverException.class)
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+                .until(ExpectedConditions.elementToBeClickable(by));
         driver.findElement(by).click();
+    }
+
+    protected void waitForElementVisible(By locator) {
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public void switchToRequiredTabInBrowser(String tabTitle) {
@@ -63,8 +58,8 @@ public abstract class AbstractPage {
         }
     }
 
-    public void scrollIntoView(WebElement element){
-        JavascriptExecutor js =((JavascriptExecutor)driver);
+    public void scrollIntoView(WebElement element) {
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("arguments[0].scrollIntoView(true)", element);
     }
 

@@ -17,12 +17,15 @@ public abstract class BaseTest {
     protected WebDriver driver;
 
     @BeforeClass
-    public void startBrowser() {
+    public void startBrowserAndOpenBaseURL() {
         WebDriverManager.chromedriver().setup();
         log.info("Start browser");
         driver = new ChromeDriver();
+        driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        log.info("Navigate to home page");
+        driver.get(BASE_URL);
     }
 
     @AfterClass

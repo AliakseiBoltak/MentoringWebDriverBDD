@@ -95,7 +95,7 @@ public class UserAccountPage extends AbstractPage {
     }
 
     public UserAccountPage sendEmail() {
-        waitForElementAndClick(driver, By.xpath("//td[@class='gU Up']"));
+        buttonSendEmail.click();
         return this;
     }
 

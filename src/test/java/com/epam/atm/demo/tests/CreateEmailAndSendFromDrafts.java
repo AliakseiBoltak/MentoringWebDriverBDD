@@ -3,7 +3,6 @@ package com.epam.atm.demo.tests;
 import com.epam.atm.demo.pages.LoginPage;
 import com.epam.atm.demo.pages.UserAccountPage;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,9 +12,6 @@ public class CreateEmailAndSendFromDrafts extends BaseTest {
 
     @Test()
     public void createDraftEmailAndSendItFromDraftsFolder() {
-
-        log.info("Navigate to home page");
-        driver.get(BASE_URL);
 
         log.info("Login into user`s account");
         LoginPage loginPage = new LoginPage(driver);
@@ -29,11 +25,10 @@ public class CreateEmailAndSendFromDrafts extends BaseTest {
         userAccountPage.navigateToDrafts();
         Assert.assertTrue(userAccountPage.isEmailExists());
 
-        log.info("Send email and check that it disappeared from drafts");
+        log.info("Send email");
         userAccountPage.sendDraftEmail();
-        Assert.assertFalse(userAccountPage.isEmailExists());
 
-        log.info("Navigate to sent folder and check that email now is in sent folder");
+        log.info("Navigate to sent folder and check that email is in sent folder");
         userAccountPage.clickOnSentLink();
         Assert.assertTrue(userAccountPage.isEmailExists());
 

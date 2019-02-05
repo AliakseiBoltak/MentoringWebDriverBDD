@@ -42,6 +42,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage clickOnPasswordNext() {
+        waitForElementVisible(buttonPasswordNextLocator);
         waitForElementAndClick(driver, buttonPasswordNextLocator);
         return this;
     }
