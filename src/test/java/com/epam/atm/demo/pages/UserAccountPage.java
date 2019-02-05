@@ -123,9 +123,14 @@ public class UserAccountPage extends AbstractPage {
         return this;
     }
 
-    public boolean isEmailExists() {
-        return isElementExists(By.xpath(String.format("//span[contains(text(), '%s')]", SUBJECT))) &&
-                isElementExists(By.xpath(String.format("//span[contains(text(), '%s')]", BODY)));
+    public boolean isEmailDisplayedInDrafts() {
+        waitForElementVisible(By.xpath(String.format("/descendant::span[contains(text(), '%s')][1]", BODY)));
+        return driver.findElement(By.xpath(String.format("/descendant::span[contains(text(), '%s')][1]", BODY))).isDisplayed();
+    }
+
+    public boolean isEmailDisplayedInSentFolder() {
+        waitForElementVisible(By.xpath(String.format("/descendant::span[contains(text(), '%s')][1]", BODY)));
+        return driver.findElement(By.xpath(String.format("/descendant::span[contains(text(), '%s')][1]", BODY))).isDisplayed();
     }
 
     public UserAccountPage logout() {

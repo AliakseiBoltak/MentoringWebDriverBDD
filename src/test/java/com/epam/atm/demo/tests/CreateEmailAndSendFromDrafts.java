@@ -23,14 +23,14 @@ public class CreateEmailAndSendFromDrafts extends BaseTest {
 
         log.info("Navigate to drafts and check email is saved in drafts");
         userAccountPage.navigateToDrafts();
-        Assert.assertTrue(userAccountPage.isEmailExists());
+        Assert.assertTrue(userAccountPage.isEmailDisplayedInDrafts());
 
         log.info("Send email");
         userAccountPage.sendDraftEmail();
 
         log.info("Navigate to sent folder and check that email is in sent folder");
         userAccountPage.clickOnSentLink();
-        Assert.assertTrue(userAccountPage.isEmailExists());
+        Assert.assertTrue(userAccountPage.isEmailDisplayedInSentFolder());
 
         log.info("Log out from user`s account");
         userAccountPage.logout();
