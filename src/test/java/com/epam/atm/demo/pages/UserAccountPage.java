@@ -29,16 +29,16 @@ public class UserAccountPage extends AbstractPage {
     @FindBy(className = "Ha")
     private WebElement labelClose;
 
-    @FindBy(xpath = "//*[@title='Drafts']")
+    @FindBy(xpath = "//*[contains(text(), 'Drafts')]")
     private WebElement linkDraftEmails;
 
-    @FindBy(xpath = "//td[@class='gU Up']")
+    @FindBy(xpath = "//div[text()='Send']")
     private WebElement buttonSendEmail;
 
     @FindBy(xpath = "//*[@title='Sent']")
     private WebElement linkSentEmails;
 
-    private By buttonComposeMenuLocator = By.xpath("//div[@class='z0']");
+    private By buttonComposeMenuLocator = By.xpath("//div[contains(text(),'Compose')]");
 
     public UserAccountPage(WebDriver driver) {
         super(driver);

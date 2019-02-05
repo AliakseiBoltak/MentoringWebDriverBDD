@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
 
-    public static final String BASE_URL = "https://www.google.com/intl/eng/gmail/about/#";
+    public static final String BASE_URL = "https://www.google.com/intl/ru/gmail/about/#";
     public static final String USER_EMAIL = "irene.test02@gmail.com";
     public static final String USER_PASSWORD = "S2501552s";
     public Logger log = Logger.getLogger(BaseTest.class);

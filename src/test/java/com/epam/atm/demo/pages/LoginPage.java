@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
 
-    @FindBy(linkText = "SIGN IN")
+    @FindBy(xpath = "//*[@class='gmail-nav__nav-link gmail-nav__nav-link__sign-in']")
     private WebElement buttonSignIn;
 
     @FindBy(id = "identifierId")
