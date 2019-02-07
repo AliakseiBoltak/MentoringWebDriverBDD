@@ -32,8 +32,9 @@ public class LoginPage extends AbstractPage {
         super(driver);
     }
 
-    public void clickOnButtonCreateAccount() {
+    public LoginPage clickOnButtonCreateAccount() {
         buttonCreateAccount.click();
+        return this;
     }
 
     public LoginPage clickOnButtonSignIn() {
@@ -42,7 +43,6 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage clickOnPasswordNext() {
-        waitForElementVisible(buttonPasswordNextLocator);
         waitForElementAndClick(driver, buttonPasswordNextLocator);
         return this;
     }
