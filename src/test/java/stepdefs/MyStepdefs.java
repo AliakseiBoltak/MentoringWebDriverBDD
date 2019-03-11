@@ -4,7 +4,8 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.testng.Assert;
+
+import org.junit.Assert;
 import pages.GmailLoginPage;
 import pages.GmailMainPage;
 import pages.GmailPasswordPage;

@@ -13,7 +13,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Reporter;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,8 +50,6 @@ public class Browser implements WebDriver {
     }
 
     public WebElement findElement(By by) {
-        Reporter.log(String.format("Finding element: %s, current URL: '%s'", by.toString(), driver.getCurrentUrl()),
-                true);
         return driver.findElement(by);
     }
 

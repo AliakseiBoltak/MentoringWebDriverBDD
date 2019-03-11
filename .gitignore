@@ -34,6 +34,7 @@ local.properties
 
 # Maven
 /target/
+/test-output/
 /*/target/
 /*/*/target/
 /*/*/*/target/
