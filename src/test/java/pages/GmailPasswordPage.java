@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import property.PropertyProvider;
 
-public class GmailPasswordPage extends AbstractedPage {
+public class GmailPasswordPage extends AbstractPage {
 
     @FindBy(xpath = "//div[@class='Xb9hP']/input[@type='password']")
     private WebElement passwordInput;

@@ -4,11 +4,11 @@ import browser.Browser;
 import org.openqa.selenium.support.PageFactory;
 import browser.BrowserProvider;
 
-public abstract class AbstractedPage {
+public abstract class AbstractPage {
 
     protected Browser browser;
 
-    public AbstractedPage() {
+    public AbstractPage() {
         this.browser = BrowserProvider.getBrowser();
         PageFactory.initElements(browser, this);
     }

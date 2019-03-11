@@ -7,7 +7,7 @@ import property.PropertyProvider;
 
 import java.util.List;
 
-public class GmailLoginPage extends AbstractedPage {
+public class GmailLoginPage extends AbstractPage {
 
     private static final String TAB_NAME = "Gmail";
 

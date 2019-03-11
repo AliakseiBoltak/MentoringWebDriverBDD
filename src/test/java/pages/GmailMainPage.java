@@ -8,7 +8,7 @@ import java.util.List;
 
 import static utils.RandomString.getRandomString;
 
-public class GmailMainPage extends AbstractedPage {
+public class GmailMainPage extends AbstractPage {
 
     @FindBy(xpath = "//span[@class='ait']/div[@class='G-asx T-I-J3 J-J5-Ji']")
     private WebElement expandMoreButton;
