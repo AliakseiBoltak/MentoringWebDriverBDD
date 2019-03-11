@@ -1,4 +1,5 @@
-package com.epam.atm.demo.Utils;
+package utils;
+
 
 import java.security.SecureRandom;
 
