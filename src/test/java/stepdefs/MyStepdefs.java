@@ -1,10 +1,8 @@
 package stepdefs;
 
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
 import org.junit.Assert;
 import pages.GmailLoginPage;
 import pages.GmailMainPage;
@@ -13,7 +11,7 @@ import pages.GmailPasswordPage;
 public class MyStepdefs {
 
     @Given("^I Logged into the gmail account$")
-    public void iOpenedLogInPage() {
+    public void iLoggedIntoGmailAccount() {
         new GmailLoginPage().pressSignInButton().fillEmailIInput().pressNextButton();
         new GmailPasswordPage().fillGmailPasswordInput().pressPasswordNextButton();
     }
@@ -26,14 +24,17 @@ public class MyStepdefs {
                 .fillBodyInput();
     }
 
-    @And("^I Close email$")
+    @When("^I Close email$")
     public void iCloseThisEmail() {
         new GmailMainPage().saveAndCloseEmail();
     }
 
-    @And("^I send email from Drafts$")
+    @When("^I send email from Drafts$")
     public void iSendWEmailFromDrafrs() {
-        new GmailMainPage().clickOnDraftsLink().clickOnDraftEmail().sendEmail();
+        new GmailMainPage().clickOnDraftsLink()
+                .clickOnDraftEmail()
+                .waitForRecipientToLoadInEmail()
+                .sendEmail();
     }
 
     @Then("^I see that this email is saved in drafts$")
@@ -41,7 +42,7 @@ public class MyStepdefs {
         Assert.assertTrue(new GmailMainPage().isEmailAppearedInDrafts());
     }
 
-    @And("^I open Sent folder$")
+    @When("^I open Sent folder$")
     public void iOpenSentFolder() {
         new GmailMainPage().clickOnSentLink();
     }
@@ -51,18 +52,18 @@ public class MyStepdefs {
         Assert.assertTrue(new GmailMainPage().isEmailAppearedInSentFolder());
     }
 
-    @And("^I open Drafts$")
+    @When("^I open Drafts$")
     public void iOpenDrafts() {
         new GmailMainPage().clickOnDraftsLink();
     }
 
-    @And("^I logout$")
+    @When("^I logout$")
     public void iLogOut() {
         new GmailMainPage().clickOnImageButton().clickOnSignOutButton();
     }
 
-    @And("^I log out without saving changes$")
-    public void iLogOutWithiutSavingChanges() {
+    @When("^I log out without saving changes$")
+    public void iLogOutWithoutSavingChanges() {
         new GmailMainPage().clickOnImageButton().clickOnSignOutButton().acceptAlert();
     }
 

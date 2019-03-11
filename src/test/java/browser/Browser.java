@@ -24,13 +24,15 @@ public class Browser implements WebDriver {
 
     protected WebDriver driver;
     protected JavascriptExecutor jsExecutor;
+    protected TakesScreenshot takesScreenshot;
     private static final int WAIT_FOR_ELEMENT_SECONDS = 20;
     private static final String SCREENSHOTS_NAME_TPL = "Screenshots/src";
-    private static Logger log = Logger.getLogger(Browser.class);
+    private Logger log = Logger.getLogger(Browser.class);
 
     public Browser(WebDriver driver) {
-        this.jsExecutor = (JavascriptExecutor) (driver);
+        this.jsExecutor = (JavascriptExecutor) driver;
         this.driver = driver;
+        this.takesScreenshot = (TakesScreenshot) driver;
     }
 
     public void get(String url) {
@@ -113,7 +115,12 @@ public class Browser implements WebDriver {
         jsExecutor.executeScript("arguments[0].style.border='0px'", element);
     }
 
-    public void takeScreenshot() {
+    public byte[] getScreenshotAsBytes() {
+        byte[] screenshot = takesScreenshot.getScreenshotAs(OutputType.BYTES);
+        return screenshot;
+    }
+
+    public void saveScreenshot() {
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
@@ -127,7 +134,6 @@ public class Browser implements WebDriver {
 
     public void switchToRequiredTabInBrowser(String tabTitle) {
         ArrayList<String> tabs = new ArrayList(driver.getWindowHandles());
-
         for (String currentTab : tabs) {
             driver.switchTo().window(currentTab);
             if (driver.getTitle().equals(tabTitle)) {
@@ -170,7 +176,7 @@ public class Browser implements WebDriver {
         ex.executeScript("window.scrollBy(0,document.body.scrollHeight)");
     }
 
-    public void scrollUsingJJSotTheElement(WebElement Element) {
+    public void scrollUsingJSToTheElement(WebElement Element) {
         JavascriptExecutor ex = (JavascriptExecutor) driver;
         ex.executeScript("arguments[0].value=''", Element);
     }

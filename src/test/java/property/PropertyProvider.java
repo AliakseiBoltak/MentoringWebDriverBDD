@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PropertyProvider {
 
-    private static String FILE_NAME = "src/test/resources/config/config.properties";
+    private static final String FILE_NAME = "src/test/resources/config/config.properties";
     private static Properties prop = new Properties();
 
     public static String getProperty(String key) {

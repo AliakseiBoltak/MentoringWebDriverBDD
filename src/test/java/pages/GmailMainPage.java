@@ -60,25 +60,19 @@ public class GmailMainPage extends AbstractPage {
 
     public GmailMainPage pressComposeButton() {
         browser.waitForElementVisible(composeButton);
-        browser.highlightElement(composeButton);
         composeButton.click();
-        browser.unhighlightElement(composeButton);
         return new GmailMainPage();
     }
 
     public GmailMainPage fillRecipientInput() {
         browser.waitForElementVisible(recipientInput);
-        browser.highlightElement(recipientInput);
         recipientInput.sendKeys(RECIPIENT_EMAIL);
-        browser.unhighlightElement(recipientInput);
         return new GmailMainPage();
     }
 
     public GmailMainPage fillSubjectInput() {
         browser.waitForElementVisible(subjectInput);
-        browser.highlightElement(subjectInput);
         subjectInput.sendKeys(EMAIL_SUBJECT);
-        browser.unhighlightElement(subjectInput);
         return this;
     }
 
@@ -111,6 +105,11 @@ public class GmailMainPage extends AbstractPage {
         browser.waitForElementAndClick(By.xpath(String.format(
                 "//span[contains(text(), 'Draft')]/following::span[contains(text(), '%1s')]/following::span[contains(text(), '%2s')]",
                 EMAIL_SUBJECT, EMAIL_BODY)));
+        return this;
+    }
+
+    public GmailMainPage waitForRecipientToLoadInEmail() {
+        browser.waitForElementVisible(By.xpath("//span[contains(text(), 'Aliaksei Boltak')]"));
         return this;
     }
 

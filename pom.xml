@@ -16,7 +16,7 @@
                 <version>2.12.4</version>
                 <configuration>
                     <includes>
-                        <include>**/Runner.java</include>
+                        <include>**/FeatureRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>
