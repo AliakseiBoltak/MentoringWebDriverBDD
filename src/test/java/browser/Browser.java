@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -61,6 +62,11 @@ public class Browser implements WebDriver {
         } catch (NoAlertPresentException e) {
             log.info("Unable to accept the alert " + e);
         }
+    }
+
+    public void selectValueFromDropdownByText(WebElement dropdown, String text){
+        Select select = new Select(dropdown);
+        select.selectByVisibleText(text);
     }
 
     public boolean isElementExists(By by) {
