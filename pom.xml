@@ -12,6 +12,34 @@
         <forkCount>3</forkCount>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.magentys</groupId>
+                <artifactId>donut-maven-plugin</artifactId>
+                <version>0.0.5</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.build.directory}/cucumber-reports</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/donut/</outputDirectory>
+                            <timestamp>${maven.build.timestamp}</timestamp>
+                            <template>default</template>
+                            <prefix>${project.name}</prefix>
+                            <projectName>${project.name}</projectName>
+                            <projectVersion>${project.version}</projectVersion>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
     <profiles>
         <profile>
             <id>serial</id>
@@ -23,8 +51,9 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.12.4</version>
+                        <version>2.22.1</version>
                         <configuration>
+                            <testFailureIgnore>true</testFailureIgnore>
                             <includes>
                                 <include>**/FeatureRunner.java</include>
                             </includes>
@@ -54,9 +83,10 @@
                                         <package>stepdefs</package>
                                         <package>hooks</package>
                                     </glue>
-                                    <featuresDirectory>src/test/resources/features</featuresDirectory>
-                                    <cucumberOutputDir>target/cucumber-report</cucumberOutputDir>
-                                    <format>html</format>
+                                    <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
+                                    <featuresDirectory>src/test/resources/features/</featuresDirectory>
+                                    <cucumberOutputDir>target/cucumber-reports</cucumberOutputDir>
+                                    <format>json</format>
                                     <parallelScheme>SCENARIO</parallelScheme>
                                     <namingScheme>feature-title</namingScheme>
                                 </configuration>
@@ -70,6 +100,7 @@
                         <configuration>
                             <forkCount>${forkCount}</forkCount>
                             <reuseForks>true</reuseForks>
+                            <testFailureIgnore>true</testFailureIgnore>
                             <includes>
                                 <include>**/*IT.java</include>
                             </includes>
@@ -86,7 +117,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>3.1.1</version>
+            <version>3.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

@@ -8,8 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"stepdefs", "hooks"},
-        format = {"pretty", "html:target/cucumber-report"},
-        //"json:json_output/cucumber.json", "junit:junit_xml/cucumber.xml"},
+        format = {"pretty", "json:target/cucumber-reports/cucumber.json"},
         strict = true,
         dryRun = false
         //tags = {"@test"}

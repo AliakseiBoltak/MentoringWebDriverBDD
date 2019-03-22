@@ -1,9 +1,5 @@
-## To run cucumber scenarios in serial mode:
-mvn test
+## To run all cucumber scenarios in serial mode:
+mvn clean package
 
-## To run cucumber scenarios in parallel mode:
-mvn test -Pparallel -DforkCount=number of forks
-
-## Detailed info on parallel execution :
-https://maven.apache.org/surefire/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html
-https://github.com/temyers/cucumber-jvm-parallel-plugin
+## To run all cucumber scenarios in parallel mode:
+mvn clean package -Pparallel
