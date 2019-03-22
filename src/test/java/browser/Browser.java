@@ -1,5 +1,6 @@
 package browser;
 
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -121,6 +122,7 @@ public class Browser implements WebDriver {
         jsExecutor.executeScript("arguments[0].style.border='0px'", element);
     }
 
+    @Attachment(value ="Screenshot", type = "image/png")
     public byte[] getScreenshotAsBytes() {
         byte[] screenshot = takesScreenshot.getScreenshotAs(OutputType.BYTES);
         return screenshot;

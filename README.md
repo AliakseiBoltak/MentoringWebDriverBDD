@@ -1,5 +1,5 @@
-## To run all cucumber scenarios in serial mode:
-mvn clean package
+## Run cucumber scenarios and generate allure report:
+mvn clean test site -DforkCount=number of forks
 
-## To run all cucumber scenarios in parallel mode:
-mvn clean package -Pparallel
+## Open report page:
+target/site/allure-maven-plugin/index.html
